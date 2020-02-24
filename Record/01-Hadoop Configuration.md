@@ -1,4 +1,4 @@
-# Hadoop 配置「一」：macOS 10.15.3 + Hadoop 3.2.1
+# Hadoop 配置【一】：macOS 10.15.3 + Hadoop 3.2.1
 
 ## 云计算平台
 
@@ -12,7 +12,7 @@
 
 [《大数据基础编程、实验和案例教程》](https://dblab.xmu.edu.cn/post/bigdatapractice/)：配套实验指导书
 
-[Hadoop](https://book.douban.com/subject/10464777/)
+[《Hadoop》](https://book.douban.com/subject/10464777/)
 
 
 
@@ -83,9 +83,9 @@ Spark基于内存计算，MapReduce基于内存，Spark性能高。Hive，Hadoop
 
 **Hadoop部署与使用**
 
-**HDFS：**NameNode[名称节点]] + DataNode[数据节点] 一起构成分布式文件节点系统。NameNode很多数据都保存在内存中。
+HDFS：NameNode[名称节点]] + DataNode[数据节点] 一起构成分布式文件节点系统。NameNode很多数据都保存在内存中。
 
-**MapReduce：**JobTracker[作业管家，进行协调] + TaskTracker[部署在不同机器中，负责跟踪和执行分配给自己的作业]
+MapReduce：JobTracker[作业管家，进行协调] + TaskTracker[部署在不同机器中，负责跟踪和执行分配给自己的作业]
 
 一个MapReduce做作业时由一个总管家JobTracker来协调很多个位于不同机器上的若干个TaskTracker完成一个大的作业。
 
@@ -157,11 +157,11 @@ brew upgrade hadoop
 
 对于Java版本使用问题，参见[官网](https://cwiki.apache.org/confluence/display/HADOOP/Hadoop+Java+Versions)。
 
-![Screen Shot 2020-02-23 at 5.42.40 PM](/Users/superming/Library/Application Support/typora-user-images/Screen Shot 2020-02-23 at 5.42.40 PM.png)
+![p1](./pic/p2.png)
 
 检查自己的Java 版本`Java -version`
 
-![Screen Shot 2020-02-23 at 6.35.03 PM](/Users/superming/Library/Application Support/typora-user-images/Screen Shot 2020-02-23 at 6.35.03 PM.png)
+![p2](./pic/p3.png)
 
 如果不是Java8，参考常规下载包安装或命令安装「若原本有更高级或别的java版本在进行其余开发，不用卸载修改路径即可，请自寻Google」
 
@@ -189,11 +189,11 @@ ssh localhost
   $ chmod 0600 ~/.ssh/authorized_keys
 ```
 
-![Screen Shot 2020-02-23 at 6.58.16 PM](/Users/superming/Library/Application Support/typora-user-images/Screen Shot 2020-02-23 at 6.58.16 PM.png)
+![p2](./pic/p5.png)
 
 然后在系统System Preferences -> Sharing下的Remote Login中国中选择All users允许接入。
 
-![Screen Shot 2020-02-23 at 6.54.29 PM](/Users/superming/Library/Application Support/typora-user-images/Screen Shot 2020-02-23 at 6.54.29 PM.png)
+![p2](./pic/p4.png)
 
 再次执行`ssh localhost`看是否成功。若依旧失败请Google解决。
 
@@ -205,7 +205,7 @@ Brew install hadoop
 
 Brew会安装最新的稳定版本，截止2020年2月23日，版本为`hadoop-3.2.1` 
 
-![Screen Shot 2020-02-23 at 12.56.00 PM](/Users/superming/Library/Application Support/typora-user-images/Screen Shot 2020-02-23 at 12.56.00 PM.png)
+![p2](./pic/p12.png)
 
 Mac下的安装目录：`/usr/local/Cellar/hadoop `
 
@@ -249,7 +249,7 @@ Hadoop运行由配置文件决定，也就是从伪分步模式切换回非分�
 
 在`/usr/local/Cellar/hadoop/3.2.1/libexec/etc/hadoop/hadoop-env.sh`下寻找export JAVA_HOME，修改配置如下：
 
-![Screen Shot 2020-02-23 at 7.29.10 PM](/Users/superming/Library/Application Support/typora-user-images/Screen Shot 2020-02-23 at 7.29.10 PM.png)
+![p2](./pic/p6.png)
 
 ### core-site.xml
 
@@ -320,7 +320,7 @@ cd /usr/local/opt/hadoop
 hdfs namenode -format
 ```
 
-![Screen Shot 2020-02-23 at 7.37.43 PM](/Users/superming/Library/Application Support/typora-user-images/Screen Shot 2020-02-23 at 7.37.43 PM.png)
+![p2](./pic/p7.png)
 
 ### 启动命令介绍
 
@@ -335,7 +335,7 @@ hdfs namenode -format
 
 开启完毕后使用`jps`命令查看服务状态
 
-![Screen Shot 2020-02-23 at 7.45.37 PM](/Users/superming/Library/Application Support/typora-user-images/Screen Shot 2020-02-23 at 7.45.37 PM.png)
+![p2](./pic/p8.png)
 
 按照上述配置，且没有更换端口，通过下面网址接入Hadoop的网页
 
@@ -345,17 +345,17 @@ hdfs namenode -format
 
 NameNode Info：
 
-![Screen Shot 2020-02-23 at 7.48.55 PM](/Users/superming/Library/Application Support/typora-user-images/Screen Shot 2020-02-23 at 7.48.55 PM.png)
+![p2](./pic/p9.png)
 
 **JobTracker：http://localhost:8088/**
 
 MapReduce Info：
 
-![Screen Shot 2020-02-23 at 7.51.31 PM](/Users/superming/Library/Application Support/typora-user-images/Screen Shot 2020-02-23 at 7.51.31 PM.png)
+![p2](./pic/p10.png)
 
 **Node Specific Info: http://localhost:8042/**
 
-![Screen Shot 2020-02-23 at 7.52.47 PM](/Users/superming/Library/Application Support/typora-user-images/Screen Shot 2020-02-23 at 7.52.47 PM.png)
+![p2](./pic/p11.png)
 
 
 
@@ -388,7 +388,7 @@ Hadoop默认配置使用本地框架进行开发调试，如果要在本机上�
 
 1. 开启所有服务后，发现有些服务没有开启
 
-![Screen Shot 2020-02-23 at 2.21.34 PM](/Users/superming/Library/Application Support/typora-user-images/Screen Shot 2020-02-23 at 2.21.34 PM.png)
+![p2](./pic/p15.png)
 
 Answer：未能开启其余模块，主要是Java版本不兼容，我使用的是Java11进行安装，出现如上错误，下载Java 8 后问题Fix。
 
@@ -448,7 +448,7 @@ Shell命令的四种方式
 
 运行结果截图如下：
 
-![Screen Shot 2020-02-24 at 3.19.55 PM](/Users/superming/Library/Application Support/typora-user-images/Screen Shot 2020-02-24 at 3.19.55 PM.png)
+![p2](./pic/p13.png)
 
 查看命令运行结果：
 
@@ -456,7 +456,7 @@ Shell命令的四种方式
 ./bin/hdfs dfs -cat output/*
 ```
 
-![Screen Shot 2020-02-24 at 3.34.10 PM](/Users/superming/Library/Application Support/typora-user-images/Screen Shot 2020-02-24 at 3.34.10 PM.png)
+![p2](./pic/p14.png)
 
 或把文件存入本地再查看
 
@@ -472,7 +472,7 @@ cat ./output/*
 ./bin/hdfs dfs -rm -r output 「output指代目标文件」
 ```
 
-**「参考」**鉴于此在每次开发中，可以在程序中添加如下代码，能在每次运行时自动删除输出目录。
+【**参考**】：鉴于此在每次开发中，可以在程序中添加如下代码，能在每次运行时自动删除输出目录。
 
 ```java
 Configuration conf = new Configuration();
@@ -492,7 +492,7 @@ outputPath.getFileSystem(conf).delete(outputPath, true);
 
 ---
 
-目录整理：
+**目录整理：**
 
 环境配置目录：`/usr/local/Cellar/hadoop/3.2.1/libexec/etc/hadoop/capacity-scheduler.xml`
 
