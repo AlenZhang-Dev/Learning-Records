@@ -1,9 +1,5 @@
 # Hadoop 配置【一】：macOS 10.15.3 + Hadoop 3.2.1
 
-## 云计算平台
-
-服务层次：基础设施即服务（IaaS）/ 平台即服务（PaaS）/ 软件即服务（SaaS）
-
 
 
 ## 资料选择
@@ -43,11 +39,11 @@
 >
 > IaaS：Infrastructure as a Service	「将基础设施（计算资源和存储）作为服务出租」
 
-物联网：
+物联网概述：
 
 > 感知层	-> 网络层	->	处理层	->	应用层
 
-云计算为大数据提供技术基础、大数据为云计算提供用武之地。
+云计算为大数据提供技术基础、大数据为云计算提供海量数据。
 
 物联网是大数据重要来源，大数据为物联网数据分析提供支撑。
 
@@ -55,15 +51,17 @@
 
 
 
-## 处理架构Hadoop[需拓展]
+## Hadoop架构
 
-![hadoop structure](/Users/superming/Library/Mobile Documents/com~apple~CloudDocs/Learning/BIG DATA！/Pics/hadoop structure.jpg)
+![hadoop structure](./pic/p1.jpg)
 
 开源的分布式计算平台，极大的降低了用户的复杂性。可以使用多种语言在Hadoop上运行。
 
 两大核心：HDFS + MapReduce，**这两个核心解决了分布式的存储和分布式处理问题两大核心问题。**
 
 特点：高可靠性，高效性「分布式并行处理」，高可扩展性，成本低「可用低端机」。
+
+
 
 **Hadoop版本区分**：Hadoop1.x / Hadoop 2.x  / Hadoop 3.x
 
@@ -75,7 +73,7 @@
 
 
 
-**Hadoop项目结构**「需深入」
+**Hadoop项目结构**
 
 Spark基于内存计算，MapReduce基于内存，Spark性能高。Hive，Hadoop上的数据仓库。Pig进行轻量级的数据处理「可以嵌套Sql，基于Haaoop的大规模数据分析平台」，Oozie工作流管理，ZooKeeper，提供分布式协调一致性服务，Hbase非关系型的数据库。Flume进行数据收集，Sqoop进行数据导入导出「关系数据库的数据导出的Hadoop中」，Ambari，快速部署工具，支持Apache Hadoop集群的供应。
 
@@ -97,9 +95,8 @@ MapReduce：JobTracker[作业管家，进行协调] + TaskTracker[部署在不�
 
 # MacOS Hadoop 配置及入坑指南
 
-> 学习大数据的记录文章，有很多不足或错误尽请谅解或与我联系。
+> 学习大数据的记录文章，有很多不足或错误尽请谅解或与我联系。[Mail](supermingzero@gmail.com)     [Telegram](https://t.me/SuperMing)
 >
-> [邮箱](supermingzero@gmail.com)      [Telegram](https://t.me/SuperMing)
 
 > 系统版本：macOS Catalina 10.15.3
 >
@@ -109,7 +106,7 @@ MapReduce：JobTracker[作业管家，进行协调] + TaskTracker[部署在不�
 
 Hadoop是一个开源的分布式计算平台，由于良好的开发环境极大的降低了用户的使用复杂性。基于Java开发，具有很好的扩展性，可以使用多种语言运行。
 
-Hadoop的框架最核心的设计就是：HDFS和MapReduce。HDFS为海量的数据提供了存储，则MapReduce为海量的数据提供了计算.
+Hadoop的框架最核心的设计就是：HDFS和MapReduce。**HDFS为海量的数据提供了存储，则MapReduce为海量的数据提供了计算。**
 
 由于Mac OS本身基于类Unix系统开发，Hadoop平台亦可以在Mac OS上使用。相关配置可能有所不同。
 
@@ -117,7 +114,7 @@ Hadoop的框架最核心的设计就是：HDFS和MapReduce。HDFS为海量的数
 
 ## WHY
 
-mac作为我平时开发的主力机，当然希望各种开发环境都能在一台机子上完成，Hadoop也不例外。Apache Hadoop 3.2.1于2019年9月22日释出，mac系统可参考和借鉴的文章不是很多，所以希望在macOS下完美的配置Hadoop，并解决相关问题。「Not Yet」。
+Mac作为我平时开发的主力机，当然希望各种开发环境都能在一台机子上完成，Hadoop也不例外。Apache Hadoop 3.2.1于2019年9月22日释出，Mac系统可参考和借鉴的文章不是很多，所以希望在macOS下完美的配置Hadoop，并解决相关问题。
 
 
 
@@ -125,8 +122,8 @@ mac作为我平时开发的主力机，当然希望各种开发环境都能在�
 
 * Java 8 [ 注意是Java 8 ]
 * [Homebrew](https://brew.sh/) [Mac OS的包管理系统]
-* ssh
-* Hadoop
+* ssh配置
+* Hadoop配置
 
 ### 安装Homebrew
 
@@ -184,14 +181,14 @@ ssh localhost
 使用下面命令，授权SSH登陆。
 
 ```shell
-  $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+  $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa		
   $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
   $ chmod 0600 ~/.ssh/authorized_keys
 ```
 
 ![p2](./pic/p5.png)
 
-然后在系统System Preferences -> Sharing下的Remote Login中国中选择All users允许接入。
+然后在系统System Preferences -> Sharing下的Remote Login中选择All users允许接入。
 
 ![p2](./pic/p4.png)
 
@@ -239,7 +236,7 @@ macOS下Hadoop配置文件目录为：/usr/local/Cellar/hadoop/3.2.1/libexec/etc
 >
 > **hadoop-env.sh** 「Total」
 
-Hadoop运行由配置文件决定，也就是从伪分步模式切换回非分布式模式都需要对配置文件进行调整。
+Hadoop运行由配置文件决定，也就是从伪分布式模式切换回非分布式模式都需要对配置文件进行调整。
 
 在官方文档下，伪分布模式只需要配置`fs.defaultFS`与`dfs.replication`就可。但我们需要配置`hadoop.tmp.dir、dfs.namenode.name.dir、dfs.datenode.data.dir`指定使用的目录，默认目录重启时会被清理，所以需要进行配置。
 
@@ -247,7 +244,7 @@ Hadoop运行由配置文件决定，也就是从伪分步模式切换回非分�
 
 在此文件对hadoop进行配置。使用命令找到mac下的Java_Home路径`/usr/libexec/java_home -V`
 
-在`/usr/local/Cellar/hadoop/3.2.1/libexec/etc/hadoop/hadoop-env.sh`下寻找export JAVA_HOME，修改配置如下：
+在`/usr/local/Cellar/hadoop/3.2.1/libexec/etc/hadoop/hadoop-env.sh`下寻找export JAVA_HOME，将上一步的java_home路径写入配置：
 
 ![p2](./pic/p6.png)
 
@@ -294,7 +291,7 @@ Hadoop运行由配置文件决定，也就是从伪分步模式切换回非分�
 </configuration>
 ```
 
-为什么是1？因为在单机环境下，不论是分布式还是伪分布，都只有一个数据点（Datanode）。
+？因为在单机环境下，不论是分布式还是伪分布，都只有一个数据点（Datanode）。
 
 ### mapred-site.xml
 
