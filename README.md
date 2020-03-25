@@ -2,8 +2,8 @@
 
 
 
-[Hadoop 配置「一」：macOS 10.15.3 + Hadoop 3.2.1][01]
-[HDFS 分布式文件系统][02]
+1. [Hadoop 配置「一」：macOS 10.15.3 + Hadoop 3.2.1][01]
+2. [HDFS 分布式文件系统][02]
 
 
 
