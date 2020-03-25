@@ -1,11 +1,3 @@
----
-title: 02-分布式文件系统HDFS
-date: 2020-03-19 20:57:26
-tags:
-- Hadoop
-- BigData
----
-
 # 分布式文件系统HDFS
 
 ## 1. HDFS概述：
@@ -83,7 +75,7 @@ Namenode工作机制：
 
    Secondarynode执行过程：
 
-![SecondaryNode workflow](./02-分布式文件系统HDFS/SecondaryNode workflow.png)
+![SecondaryNode workflow](./02-分布式文件系统HDFS/SecondaryNodeworkflow.png)
 
 
 
@@ -127,7 +119,7 @@ Namenode工作机制：
 >
 > Configuration类的默认实例化方法是以HDFS系统的资源配置为基础。
 >
-> ![Hadoop Filesystem](./02-分布式文件系统HDFS/Hadoop Filesystem.png)
+> ![Hadoop Filesystem](./02-分布式文件系统HDFS/HadoopFilesystem.png)
 
 #### 3.2.1 数据存放
 
@@ -162,7 +154,7 @@ HDFS提供了一个API可以确定一个数据节点所属的机架ID，客户�
 
 利用Java API读数据过程：
 
-![Java Api Read](./02-分布式文件系统HDFS/Java Api Read.png)
+![Java Api Read](./02-分布式文件系统HDFS/JavaApiRead.png)
 
 
 
@@ -172,11 +164,11 @@ HDFS采用流水线复制的策略。
 
 当客户端要向HDFS写入文件时，这个文件首先根据块大小划分成若干块并写入本地，每个块都向HDFS集群中的Namenode发起写请求，Namenode返回一个最佳数据节点返回客户端，客户端把数据写入第一个数据节点，同时把列表传给第一个数据节点，第一个数据节点将数据写入本地，同时向第二个数据节点发送数据和列表，以此类推。
 
-![HDFS DataWriteIn](./02-分布式文件系统HDFS/HDFS DataWrite.png)
+![HDFS DataWriteIn](./02-分布式文件系统HDFS/HDFSDataWrite.png)
 
 使用Java API写数据：
 
-![Java Api Write](./02-分布式文件系统HDFS/Java Api Write.png)
+![Java Api Write](./02-分布式文件系统HDFS/JavaApiWrite.png)
 
 
 
@@ -276,7 +268,7 @@ Usage: hadoop fs [generic options]
 
 将插件放到Eclipse Plugins下，然后重启Eclipse，在Preferences下按如下配置，Hadoop安装目录根据自己情况配置。
 
-![HDFS Eclipse Config1](./02-分布式文件系统HDFS/HDFS Eclipse Config1.png)
+![HDFS Eclipse Config1](./02-分布式文件系统HDFS/HDFSEclipseConfig1.png)
 
 ##### 4.2.2 创建Hadoop HDFS程序
 
