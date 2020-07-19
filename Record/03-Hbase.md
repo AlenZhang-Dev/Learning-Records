@@ -25,8 +25,6 @@ export HBASE_HOME=/usr/local/Cellar/hbase/1.3.5/libexec
 
 第一个配置使用Hbase自带的Zookeeper，而非单独加载外部的。
 
-<!--- more ----->
-
 - 修改hbase-site.xml
 
 ```xml
