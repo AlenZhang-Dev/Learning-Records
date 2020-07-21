@@ -1,17 +1,30 @@
-# Big Data Learning Record
-
-
-
-1. [Hadoop 配置「一」：macOS 10.15.3 + Hadoop 3.2.1][01]
-2. [HDFS 分布式文件系统][02]
-3. [HBase][03]
+# Learning Records
 
 
 
 
 
+## BigData
+
+ [Hadoop 配置「一」：macOS 10.15.3 + Hadoop 3.2.1][01]
+ [HDFS 分布式文件系统][02]
+ [HBase][03]
 
 
-[01]:./Record/01-Hadoop%20Configuration.md
-[02]:./Record/02-分布式文件系统HDFS.md
-[03]:./Record/03-HBase.md
+
+
+
+## Java
+[关于编程语言跨平台特性的挖掘与思考](./Java/关于编程语言跨平台特性的挖掘与思考.md)
+
+
+
+
+
+---
+
+
+
+[01]:./BigData/01-Hadoop%20Configuration.md
+[02]:./BigData/02-分布式文件系统HDFS.md
+[03]:./BigData/03-Hbase.md
