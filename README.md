@@ -30,6 +30,19 @@
 
 
 
+
+
+## Books
+
+* [C++ Primer Plus][01b]
+* [C Primer Plus][02b]
+* [深入理解Java虚拟机：JVM高级特性与最佳实践][03b]
+* [Effective Java][04b]
+* [Computer Networking][05b]
+* [神经网络与深度学习][06b]
+* [Artificial Intelligence A Modern Approach 3rd Edition][07b]
+* [数学之美][08b]
+
 ---
 
 
@@ -39,3 +52,16 @@
 [03]:./BigData/03-Hbase.md
 [04]:./BigData/Hive-MacOS-配置.md
 [05]:./BigData/Mapreduce.md
+
+
+í
+
+
+[01b]:./Books/C++%20Primer%20Plus/
+[02b]:./Books/C%20Primer%20Plus/
+[03b]:./Books/深入理解Java虚拟机-JVM高级特性与最佳实践/
+[04b]:./Books/Effective%20Java/
+[05b]:./Books/Computer%20Networking/
+[06b]:./Books/神经网络与深度学习/
+[07b]:./Books/Artificial%20Intelligence%20A%20Modern%20Approach%203rd%20Edition/
+[08b]:./Books/数学之美/
