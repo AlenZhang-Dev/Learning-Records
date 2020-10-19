@@ -33,7 +33,10 @@
 ## Algorithm
 
 * [二叉树](./Algorithm/二叉树.md)
-* [插入排序](./Algorithm/插入排序.md)
+
+* [排序](./Algorithm/排序.md)
+
+  
 
 
 
