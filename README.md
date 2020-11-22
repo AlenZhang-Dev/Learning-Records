@@ -1,6 +1,8 @@
 # Learning Records
 
+## OS
 
+* 深入理解计算机操作系统
 
 
 
@@ -19,8 +21,8 @@
 ## Java
 
 * [HttpServletRequest对象和HttpServeltRespnse对象](./Java/Java-Web-HttpServletRequest对象和HttpServeltRespnse对象详解.md)
-
 * [关于编程语言跨平台特性的挖掘与思考](./Java/关于编程语言跨平台特性的挖掘与思考.md)
+* Think in Java
 
 
 
@@ -37,6 +39,16 @@
 * [排序](./Algorithm/排序.md)
 
   
+  
+  
+
+## Machine Learning
+
+* [Standford 「Andrew NG: Machine Learning」](https://github.com/AlenZhang-Dev/MachineLearning-Stanford)
+
+* [《Python深度学习》](Machine%20Learning/Deep%20Learning%20with%20Python)
+
+
 
 
 
