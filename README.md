@@ -50,8 +50,6 @@
 
 
 
-
-
 ## Books
 
 * [C++ Primer Plus][01b]
