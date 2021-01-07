@@ -1,3 +1,9 @@
+---
+title: Ubuntu18.04 Tensorflow 1.x 
+date: 2021-01-03 20:22:19
+tags: Machine-Learning
+categories: CS
+---
 # Ubuntu18.04 Tensorflow 1.x 安装（一）：Nvidia软件安装
 
 文章包含以下几个内容：
@@ -6,16 +12,16 @@
 - CUDA版本选择及安装
 - cuDNN选择及安装
 
-我的配置[供参考]：
+我的配置[参考]：
 
 - GTX965M
 - Ubuntu18.04 LTS
 
 ## Nvidia驱动安装
 
-需要考虑：GPU硬件型号，GPU驱动，CUDA，TensorFlow，PyTorch以及CuDNN等适配信息。
+需考虑：GPU硬件型号，GPU驱动，CUDA，TensorFlow，PyTorch以及CuDNN等适配信息。
 
-1. **检查GPU是否支持GPU。这决定了你能否安装TensorFlow的GPU版本。**
+1. **检查GPU是否支持CUDA。这决定了你能否安装TensorFlow的GPU版本。**
 
 通过下面链接检查GPU是否支持CUDA，如果GPU能在列表中找到，即支持CUDA。
 
@@ -23,21 +29,21 @@
 
 例如：我使用的GPU为GTX965M，相关信息能在Nvidia官网找到：
 
-![Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-24_at_4.09.17_PM.png](Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-24_at_4.09.17_PM.png)
+![Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-24_at_4.09.17_PM.png](Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-24_at_4.09.17_PM.png)
 
 计算能力5.2
 
-![Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-24_at_3.58.30_PM.png](Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-24_at_3.58.30_PM.png)
+![Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-24_at_3.58.30_PM.png](Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-24_at_3.58.30_PM.png)
 
 2. **确定安装驱动的版本**
 
-以下链接可以查到GPU所对应操作系统可安装最新的驱动版本：
+下面链接可以查到GPU所对应操作系统可安装最新的驱动版本：
 
 [Download Drivers](https://www.nvidia.com/Download/index.aspx)
 
-![Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-26_at_11.05.58_PM.png](Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-26_at_11.05.58_PM.png)
+![Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-26_at_11.05.58_PM.png](Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-26_at_11.05.58_PM.png)
 
-![Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-24_at_8.27.17_PM.png](Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-24_at_8.27.17_PM.png)
+![Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-24_at_8.27.17_PM.png](Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-24_at_8.27.17_PM.png)
 
 接下来执行如下代码：
 
@@ -47,21 +53,21 @@ sudo apt-get update
 ubuntu-drivers devices #显示可安装的驱动版本
 ```
 
-![Ubuntu18.04+Tensorflow1.x/Screen Shot 2020-12-27 at 10.41.05 PM.png](Ubuntu18.04+Tensorflow1.x/Screen Shot 2020-12-27 at 10.41.05 PM.png)
+![Ubuntu18.04+Tensorflow-1.x/Screen Shot 2020-12-27 at 10.41.05 PM.png](Ubuntu18.04+Tensorflow-1.x/Screen Shot 2020-12-27 at 10.41.05 PM.png)
 
-显示从390-455的版本，其中推荐安装455版本。
+显示有390-455的版本，其中推荐安装455版本。
 
-需要注意的是，在下一步安装CUDA时，不同版本的CUDA对驱动版本有要求，详细要求在[Nvidia CUDA Compatibility]()页面中进行查看。
+需要注意的是，在下一步安装CUDA时，<u>不同版本的CUDA对驱动版本有要求</u>，详细要求在[Nvidia CUDA Compatibility]()页面中进行查看。
 
-![Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-24_at_10.01.29_PM.png](Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-24_at_10.01.29_PM.png)
+![Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-24_at_10.01.29_PM.png](Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-24_at_10.01.29_PM.png)
 
-**如何确定CUDA？**
+**如何确定安装的CUDA版本？**
 
-CUDA的版本根据Tensorflow版本确定。如下图所示，假设我要安装tensorflow_gpu-1.14.0版本，那么我需要安装的CUDA版本为10.0[10.1或9都不行，版本间是一一对应的]。[检查Tensorflow对应版本]()。
+CUDA的版本根据Tensorflow版本确定。如下图所示，假设要安装tensorflow_gpu-1.14.0版本，那么我需要安装的CUDA版本为10.0[10.1或9都不行，版本间一一对应]。[检查Tensorflow对应版本]()。
 
-![Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-24_at_10.12.59_PM.png](Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-24_at_10.12.59_PM.png)
+![Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-24_at_10.12.59_PM.png](Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-24_at_10.12.59_PM.png)
 
-因此我确定了我要安装CUDA10.0以及cuDNN7.4。
+综上，根据我要安装的tensorflow版本，需要安装CUDA10.0以及cuDNN7.4。
 
 回到CUDA对驱动要求查看对应GPU驱动版本的要求：`> = 410.48` 。
 
@@ -79,9 +85,17 @@ sudo reboot
 nvidia-smi
 ```
 
-![Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-26_at_11.41.06_PM.png](Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-26_at_11.41.06_PM.png)
+![Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-26_at_11.41.06_PM.png](Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-26_at_11.41.06_PM.png)
 
 执行nvidia-smi显示如图表示驱动安装完成
+
+训练时检测GPU使用情况：
+
+```shell
+watch -n 0.5 nvidia-smi  #即每隔0.5秒执行一次nvidia-smi；
+```
+
+
 
 ## CUDA安装：
 
@@ -91,9 +105,9 @@ nvidia-smi
 
 可以采用多种教程进行安装，根据给出的参考进行安装：
 
-![Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-27_at_12.26.44_AM.png](Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-27_at_12.26.44_AM.png)
+![Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-27_at_12.26.44_AM.png](Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-27_at_12.26.44_AM.png)
 
-我选择deb(local)进行安装
+选择deb(local)进行安装
 
 ```bash
 sudo dpkg -i cuda-repo-ubuntu1804-10-0-local-10.0.130-410.48_1.0-1_amd64.deb
@@ -104,7 +118,7 @@ sudo apt-get install cuda
 
 安装完成：
 
-![Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-26_at_10.25.53_AM.png](Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-26_at_10.25.53_AM.png)
+![Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-26_at_10.25.53_AM.png](Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-26_at_10.25.53_AM.png)
 
 **CUDA配置**：
 
@@ -135,7 +149,7 @@ make  #有点耗时，如果系统版本不匹配，gcc版本可能会导致报�
 ./1_Utilities/deviceQuery/deviceQuery  #执行检查程序
 ```
 
-![Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-26_at_12.12.08_PM.png](Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-26_at_12.12.08_PM.png)
+![Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-26_at_12.12.08_PM.png](Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-26_at_12.12.08_PM.png)
 
 结果出现Result==Pass表示通过，CUDA安装完成。
 
@@ -143,7 +157,7 @@ make  #有点耗时，如果系统版本不匹配，gcc版本可能会导致报�
 
 CUDA10.0 对应cuDNN 7.4
 
-在官方页面下载cuDNN【需要注册Nvidia账号】，
+在官方页面下载cuDNN【需注册Nvidia账号】，
 
 下载[cuDNN v7.4.2 for CUDA 10.0](https://developer.nvidia.com/rdp/cudnn-archive)
 
@@ -251,7 +265,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 查看下面图表，确定TensorFlow版本对Python版本的要求。【我使用Python 3.6】
 
-![Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-26_at_7.27.01_PM.png](Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-26_at_7.27.01_PM.png)
+![Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-26_at_7.27.01_PM.png](Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-26_at_7.27.01_PM.png)
 
 ### TensorFlow安装
 
@@ -264,7 +278,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 $ conda create -n tensorflow pip python=3.6
 # 安装完成后使用命令激活conda环境
 $ conda acticate tensorflow
-(tensorflow)$ #跳转为这样，表示进入了名为tensorflow的虚拟环境中
+(tensorflow)$ # 表示进入了名为tensorflow的虚拟环境中
 ```
 
 接下来可以选择在线安装或者本地安装：
@@ -280,11 +294,9 @@ pip install tensorflow-gpu==1.14.0 # GPU版本
 
 在[pypi-tensorflow](https://pypi.org/project/tensorflow-gpu/#files)网站找到对应的whl文件，下载后使用`pip install`执行即可。
 
-
-
 附：conda的简单使用：[参考[conda-cheatsheet](https://docs.conda.io/projects/conda/en/latest/user-guide/cheatsheet.html)]
 
-![Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-27_at_1.22.23_AM.png](Ubuntu18.04+Tensorflow1.x/Screen_Shot_2020-12-27_at_1.22.23_AM.png)
+![Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-27_at_1.22.23_AM.png](Ubuntu18.04+Tensorflow-1.x/Screen_Shot_2020-12-27_at_1.22.23_AM.png)
 
 ## 使用Virtualenv安装
 
@@ -367,27 +379,25 @@ sess = tf.Session()
 print(sess.run(hello))
 ```
 
-如果系统输出：`Hello, Tensorflow` ，那么表示TensorFlow安装完成。
+系统输出：`Hello, Tensorflow` ，表示TensorFlow可正常使用。
 
 ---
 
 
 
-## 参考
+## 参考&帮助
 
 [우분투 16.04에 텐서플로 1.0 설치하기 (1) Nvidia 소프트웨어 설치 (ft. GTX 970)](http://ejklike.github.io/2017/03/06/install-tensorflow1.0-on-ubuntu16.04-1.html)
-
-[简易记录：安装GPU驱动，CUDA和cuDNN](https://zhuanlan.zhihu.com/p/143429249)
 
 [GPU support | TensorFlow](https://www.tensorflow.org/install/gpu)
 
 [Install Tensorflow 1.13 on Ubuntu 18.04 with GPU support](https://medium.com/better-programming/install-tensorflow-1-13-on-ubuntu-18-04-with-gpu-support-239b36d29070)
 
+[简易记录：安装GPU驱动，CUDA和cuDNN](https://zhuanlan.zhihu.com/p/143429249)
+
 [在 Ubuntu 上安装 TensorFlow](https://tensorflow.juejin.im/install/install_linux.html#toc-16)
 
 [anaconda | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror](https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/)
-
-
 
 
 
@@ -407,3 +417,8 @@ $ .env/bin/python -m pip install fish
 # A specific version of python:
 $ python-3.6 -m pip install fish
 ```
+
+
+
+[GitHub记录](https://github.com/AlenZhang-Dev/Learning-Records/blob/master/Machine%20Learning/Notes/Ubuntu18.04%20%2B%20Tensorflow%201.x%20.md)
+
