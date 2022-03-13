@@ -96,7 +96,6 @@ MapReduce：JobTracker[作业管家，进行协调] + TaskTracker[部署在不�
 # MacOS Hadoop 配置及入坑指南
 
 > 学习大数据的记录文章，有很多不足或错误尽请谅解或与我联系。[Mail](supermingzero@gmail.com)     [Telegram](https://t.me/AlenMing)
->
 
 > 系统版本：macOS Catalina 10.15.3
 >
